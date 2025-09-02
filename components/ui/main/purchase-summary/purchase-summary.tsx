@@ -1,6 +1,7 @@
-import { SetStateAction } from "react";
+import { SetStateAction, useState } from "react";
+import { BiCollapseAlt, BiExpandAlt } from "react-icons/bi";
 import { Button } from "../../button";
-import { Card, CardContent, CardFooter, CardHeader } from "../../card";
+import { Card, CardContent, CardFooter, CardTitle } from "../../card";
 import { Reservation } from "../booking-table/booking-table";
 import { MachineEntry } from "./machine-entry";
 
@@ -13,12 +14,26 @@ export function PurchaseSummary({
     currentBookings,
     setCurrentBookings,
 }: PurchaseSummaryProps) {
+    const [expanded, setExpanded] = useState(false);
     return (
-        <Card className="min-w-[20rem] h-fit py-8 ">
-            <CardHeader className="text-center font-bold">
-                Purchase Summary
-            </CardHeader>
-            <CardContent className="max-h-[30rem] overflow-y-auto border-t border-b">
+        <Card className="min-w-[20rem] py-4 gap-2">
+            <CardTitle
+                className="relative flex items-center justify-center w-full cursor-pointer pb-1"
+                onClick={() => setExpanded(!expanded)}
+            >
+                <div className="text-center w-full">Purchase Summary</div>
+                <div className="absolute right-6 top-[40%] -translate-y-1/2">
+                    {expanded ? <BiCollapseAlt /> : <BiExpandAlt />}
+                </div>
+            </CardTitle>
+            {/*replace transition with framer motion*/}
+            <CardContent
+                className={` border-t border-b py-2 transition-all duration-300 ${
+                    expanded
+                        ? "max-h-[calc(100vh-25rem)] opacity-100 overflow-y-auto"
+                        : "max-h-0 opacity-0"
+                }`}
+            >
                 {currentBookings.length === 0 ? (
                     <p className="text-center text-sm text-muted-foreground">
                         No bookings yet.
@@ -46,7 +61,7 @@ export function PurchaseSummary({
                     <span className="font-bold text-green-300">5€</span>
                 </div>
                 <div className="flex flex-row gap-1 border-t pt-1 justify-between w-full">
-                    <span>Balance After Purchase:</span>
+                    <span>Balance after use:</span>
                     <span
                         className={`font-bold ${
                             5 - currentBookings.length * 0.5 < 0
@@ -57,7 +72,7 @@ export function PurchaseSummary({
                         {(5 - currentBookings.length * 0.5).toFixed(2)}€
                     </span>
                 </div>
-                <Button variant="confirm">Confirm Purchase</Button>
+                <Button variant="confirm">Confirm Reservation</Button>
             </CardFooter>
         </Card>
     );

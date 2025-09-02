@@ -27,7 +27,14 @@ export function MachineEntry({
             ) : (
                 <WashingMachineIcon size={23} color="#5EE9B5" />
             )}
-            {machine?.name}: {TIME_SLOT_INTERVAL[booking.timeSlot]}
+            <div className="flex flex-col">
+                <span className="font-semibold">
+                    {machine?.name}: {TIME_SLOT_INTERVAL[booking.timeSlot]}
+                </span>
+                <span className="text-gray-500">
+                    {booking.date.toDateString()}
+                </span>
+            </div>
             <Button
                 variant="ghost"
                 className="ml-auto text-red-300"

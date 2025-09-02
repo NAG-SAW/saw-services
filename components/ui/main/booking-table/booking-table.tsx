@@ -14,7 +14,10 @@ import {
     TableHeader,
     TableRow,
 } from "../../table";
+import { DatePicker } from "../date-picker/date-picker";
+import { MobileWrapperPurchaseSummary } from "../purchase-summary/mobile-wrapper-ps";
 import { PurchaseSummary } from "../purchase-summary/purchase-summary";
+import { CurrentTimeIndicator } from "./current-time-indicator";
 import { TimeSlotButton } from "./timeslot-button";
 
 export type Reservation = {
@@ -79,7 +82,10 @@ export const TIME_SLOT_INTERVAL = [
 export function BookingTable(): JSX.Element {
     // Replace with actual user context or prop in production
     const currentUserId = "tc328";
-    const [currentDate, setCurrentDate] = useState(new Date());
+    const [currentDate, setCurrentDate] = useState<Date | undefined>(
+        new Date()
+    );
+
     const [loggedIn, setLoggedIn] = useState(true);
     const activeBookings: Reservation[] = [
         { userId: "tc328", date: new Date(), timeSlot: 1, machineId: "w1" },
@@ -96,12 +102,16 @@ export function BookingTable(): JSX.Element {
 
     if (isMobile) {
         return (
-            <div className="flex flex-col">
+            <div className="flex flex-col gap-2">
+                <DatePicker
+                    currentDate={currentDate!}
+                    setSelectedDate={setCurrentDate}
+                />
                 <MachineTable
                     abbreviated
                     machines={dryers}
                     activeBookings={activeBookings}
-                    currentDate={currentDate}
+                    currentDate={currentDate!}
                     currentUserId={currentUserId}
                     currentBookings={currentBookings}
                     setCurrentBookings={setCurrentBookings}
@@ -111,28 +121,42 @@ export function BookingTable(): JSX.Element {
                     abbreviated
                     activeBookings={activeBookings}
                     machines={washers}
-                    currentDate={currentDate}
+                    currentDate={currentDate!}
+                    currentUserId={currentUserId}
+                    currentBookings={currentBookings}
+                    setCurrentBookings={setCurrentBookings}
+                />
+                <MobileWrapperPurchaseSummary>
+                    <PurchaseSummary
+                        currentBookings={currentBookings}
+                        setCurrentBookings={setCurrentBookings}
+                    />
+                </MobileWrapperPurchaseSummary>
+            </div>
+        );
+    }
+    return (
+        <div className="flex flex-row gap-5 min-w-0">
+            <div className="flex-1 min-w-0 overflow-x-auto">
+                <MachineTable
+                    activeBookings={activeBookings}
+                    machines={machines}
+                    currentDate={currentDate!}
                     currentUserId={currentUserId}
                     currentBookings={currentBookings}
                     setCurrentBookings={setCurrentBookings}
                 />
             </div>
-        );
-    }
-    return (
-        <div className="flex flex-row gap-5">
-            <MachineTable
-                activeBookings={activeBookings}
-                machines={machines}
-                currentDate={currentDate}
-                currentUserId={currentUserId}
-                currentBookings={currentBookings}
-                setCurrentBookings={setCurrentBookings}
-            />
-            <PurchaseSummary
-                currentBookings={currentBookings}
-                setCurrentBookings={setCurrentBookings}
-            />
+            <div className="flex flex-col gap-5">
+                <DatePicker
+                    currentDate={currentDate!}
+                    setSelectedDate={setCurrentDate}
+                />
+                <PurchaseSummary
+                    currentBookings={currentBookings}
+                    setCurrentBookings={setCurrentBookings}
+                />
+            </div>
         </div>
     );
 }
@@ -167,7 +191,7 @@ function MachineTable({
                             <TableHead colSpan={machines.length}>
                                 <div className="flex justify-center items-center">
                                     <Image
-                                        src="/machines_new.png"
+                                        src="/reality-Photoroom.png"
                                         alt="Description"
                                         width={1920}
                                         height={1080}
@@ -181,22 +205,21 @@ function MachineTable({
                         </TableRow>
                     )}
                     <TableRow className="bg-muted/50">
-                        <TableHead className="w-[5%]">
-                            <h4 className="text-md font-semibold tracking-tight">
+                        <TableHead>
+                            <h4
+                                className={
+                                    abbreviated ? "whitespace-normal" : ""
+                                }
+                            >
                                 Time Slot
                             </h4>
                         </TableHead>
-
                         {machines.map((machine) => (
                             <TableHead
                                 key={machine.name}
-                                className={
-                                    abbreviated
-                                        ? "w-[30%]"
-                                        : "min-w-[90px] pt-2"
-                                }
+                                className={"min-w-[90px] pt-2"}
                             >
-                                <h4 className="flex flex-row items-center gap-2  text-md font-semibold justify-center">
+                                <h4 className="flex flex-row items-center gap-2 text-md font-semibold justify-center">
                                     {machine.type === "washer" ? (
                                         <MdLocalLaundryService
                                             size={25}
@@ -217,9 +240,20 @@ function MachineTable({
                 <TableBody>
                     {TIME_SLOT_INTERVAL.map((slot, index) => (
                         <TableRow key={slot}>
-                            <TableCell>{slot}</TableCell>
+                            <TableCell
+                                className={
+                                    abbreviated
+                                        ? "border-b whitespace-normal"
+                                        : "border-b"
+                                }
+                            >
+                                {slot}
+                            </TableCell>
                             {machines.map((machine) => (
-                                <TableCell key={machine.name}>
+                                <TableCell
+                                    className="border-b"
+                                    key={machine.name}
+                                >
                                     <TimeSlotButton
                                         activeBookings={activeBookings}
                                         machine={machine}
@@ -240,11 +274,7 @@ function MachineTable({
                             className="text-right font-semibold"
                             colSpan={machines.length + 1}
                         >
-                            Current Time:{" "}
-                            {new Intl.DateTimeFormat("de-DE", {
-                                hour: "2-digit",
-                                minute: "2-digit",
-                            }).format(currentDate)}
+                            <CurrentTimeIndicator />
                         </TableCell>
                     </TableRow>
                 </TableFooter>

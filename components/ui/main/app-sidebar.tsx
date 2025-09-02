@@ -1,4 +1,4 @@
-import { GalleryVerticalEnd } from "lucide-react";
+import { WashingMachine } from "lucide-react";
 import * as React from "react";
 
 import {
@@ -24,16 +24,16 @@ const data = {
 
             items: [
                 {
-                    title: "Login",
+                    title: "Booking",
                     url: "#",
                     isActive: true,
                 },
                 {
-                    title: "Wartung",
+                    title: "Maintenance",
                     url: "#",
                 },
                 {
-                    title: "Verkäufer",
+                    title: "Seller",
                     url: "#",
                 },
             ],
@@ -49,13 +49,11 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                     <SidebarMenuItem>
                         <SidebarMenuButton size="lg" asChild>
                             <a href="#">
-                                <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
-                                    <GalleryVerticalEnd className="size-4" />
+                                <div className="flex aspect-square size-8 items-center justify-center rounded-lg">
+                                    <WashingMachine className="size-4 text-[#5EE9B5]" />
                                 </div>
                                 <div className="flex flex-col gap-0.5 leading-none">
-                                    <span className="font-semibold">
-                                        Documentation
-                                    </span>
+                                    <span className="font-semibold">EWash</span>
                                     <span className="">v1.0.0</span>
                                 </div>
                             </a>
