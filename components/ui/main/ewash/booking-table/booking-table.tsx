@@ -13,7 +13,7 @@ import {
     TableHead,
     TableHeader,
     TableRow,
-} from "../../table";
+} from "../../../table";
 import { DatePicker } from "../date-picker/date-picker";
 import { MobileWrapperPurchaseSummary } from "../purchase-summary/mobile-wrapper-ps";
 import { PurchaseSummary } from "../purchase-summary/purchase-summary";
@@ -80,13 +80,17 @@ export const TIME_SLOT_INTERVAL = [
 ];
 
 export function BookingTable(): JSX.Element {
-    // Replace with actual user context or prop in production
+    //TODO: Replace with actual user context or prop in production
     const currentUserId = "tc328";
     const [currentDate, setCurrentDate] = useState<Date | undefined>(
         new Date()
     );
 
-    const [loggedIn, setLoggedIn] = useState(true);
+    // TODO: Fetch active bookings from backend
+    /* const { data, error, isLoading } = 
+    }); */
+
+    // TODO: Remove mock data and implement actual data fetching
     const activeBookings: Reservation[] = [
         { userId: "tc328", date: new Date(), timeSlot: 1, machineId: "w1" },
         { userId: "ud439", date: new Date(), timeSlot: 2, machineId: "w2" },
@@ -130,6 +134,7 @@ export function BookingTable(): JSX.Element {
                     <PurchaseSummary
                         currentBookings={currentBookings}
                         setCurrentBookings={setCurrentBookings}
+                        updateBookings={() => {}}
                     />
                 </MobileWrapperPurchaseSummary>
             </div>
@@ -155,6 +160,7 @@ export function BookingTable(): JSX.Element {
                 <PurchaseSummary
                     currentBookings={currentBookings}
                     setCurrentBookings={setCurrentBookings}
+                    updateBookings={() => {}}
                 />
             </div>
         </div>
@@ -251,7 +257,7 @@ function MachineTable({
                             </TableCell>
                             {machines.map((machine) => (
                                 <TableCell
-                                    className="border-b"
+                                    className="border-b p-[2px]"
                                     key={machine.name}
                                 >
                                     <TimeSlotButton

@@ -1,8 +1,8 @@
 import { Trash, WashingMachineIcon } from "lucide-react";
 import React from "react";
 import { MdLocalLaundryService } from "react-icons/md";
-import { Button } from "../../button";
-import { sameDay } from "../../utils/dateutils";
+import { Button } from "../../../button";
+import { sameDay } from "../../../utils/dateutils";
 import {
     machines,
     Reservation,

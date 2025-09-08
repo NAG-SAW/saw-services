@@ -1,18 +1,20 @@
 import { SetStateAction, useState } from "react";
 import { BiCollapseAlt, BiExpandAlt } from "react-icons/bi";
-import { Button } from "../../button";
-import { Card, CardContent, CardFooter, CardTitle } from "../../card";
+import { Button } from "../../../button";
+import { Card, CardContent, CardFooter, CardTitle } from "../../../card";
 import { Reservation } from "../booking-table/booking-table";
 import { MachineEntry } from "./machine-entry";
 
 type PurchaseSummaryProps = {
     currentBookings: Reservation[];
     setCurrentBookings: React.Dispatch<SetStateAction<Reservation[]>>;
+    updateBookings: (bookings: Reservation[]) => void;
 };
 
 export function PurchaseSummary({
     currentBookings,
     setCurrentBookings,
+    updateBookings,
 }: PurchaseSummaryProps) {
     const [expanded, setExpanded] = useState(false);
     return (
@@ -72,7 +74,12 @@ export function PurchaseSummary({
                         {(5 - currentBookings.length * 0.5).toFixed(2)}€
                     </span>
                 </div>
-                <Button variant="confirm">Confirm Reservation</Button>
+                <Button
+                    variant="confirm"
+                    onClick={() => updateBookings(currentBookings)}
+                >
+                    Confirm Reservation
+                </Button>
             </CardFooter>
         </Card>
     );

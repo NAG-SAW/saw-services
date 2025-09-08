@@ -1,4 +1,4 @@
-import { Button } from "../button";
+import { Button } from "../../button";
 import {
     Dialog,
     DialogClose,
@@ -8,7 +8,7 @@ import {
     DialogHeader,
     DialogTitle,
     DialogTrigger,
-} from "../dialog";
+} from "../../dialog";
 
 type BookingDialogProps = {
     trigger: React.ReactNode;

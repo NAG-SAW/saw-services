@@ -20,21 +20,31 @@ const data = {
     navMain: [
         {
             title: "EWash",
-            url: "#",
+            url: "/ewash",
 
             items: [
                 {
                     title: "Booking",
-                    url: "#",
+                    url: "/ewash",
                     isActive: true,
                 },
                 {
                     title: "Maintenance",
-                    url: "#",
+                    url: "/ewash/maintenance",
                 },
                 {
                     title: "Seller",
-                    url: "#",
+                    url: "/ewash/seller",
+                },
+            ],
+        },
+        {
+            title: "Settings",
+            url: "/settings",
+            items: [
+                {
+                    title: "Profile",
+                    url: "/settings/profile",
                 },
             ],
         },
@@ -53,8 +63,10 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                                     <WashingMachine className="size-4 text-[#5EE9B5]" />
                                 </div>
                                 <div className="flex flex-col gap-0.5 leading-none">
-                                    <span className="font-semibold">EWash</span>
-                                    <span className="">v1.0.0</span>
+                                    <span className="font-semibold">
+                                        SAW Services
+                                    </span>
+                                    <span className="">v0.0.1</span>
                                 </div>
                             </a>
                         </SidebarMenuButton>

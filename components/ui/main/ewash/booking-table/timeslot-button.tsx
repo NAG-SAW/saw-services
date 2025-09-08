@@ -1,7 +1,7 @@
 import { PlusIcon } from "lucide-react";
 import { SlTag } from "react-icons/sl";
-import { Button } from "../../button";
-import { sameDay } from "../../utils/dateutils";
+import { Button } from "../../../button";
+import { sameDay } from "../../../utils/dateutils";
 import { Machine, Reservation } from "./booking-table";
 
 type TimeSlotButtonProps = {
