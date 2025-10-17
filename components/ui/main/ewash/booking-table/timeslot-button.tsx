@@ -40,9 +40,13 @@ export function TimeSlotButton({
 
     if (booking) {
         return booking.userId === currentUserId ? (
-            <Button variant="slotBookedByUser">You</Button>
+            <Button className="h-12" variant="slotBookedByUser">
+                You
+            </Button>
         ) : (
-            <Button variant="slotBooked">{booking.userId}</Button>
+            <Button className="h-12" variant="slotBooked">
+                {booking.userId}
+            </Button>
         );
     }
 
@@ -57,7 +61,7 @@ export function TimeSlotButton({
         <AnimatePresence mode="wait">
             {!booked ? (
                 <Button
-                    className="cursor-pointer"
+                    className="cursor-pointer h-12"
                     key="available"
                     variant="slotAvailable"
                     onClick={() =>
@@ -78,7 +82,7 @@ export function TimeSlotButton({
                 </Button>
             ) : (
                 <Button
-                    className="cursor-pointer"
+                    className="cursor-pointer h-12"
                     key="booked"
                     variant="slotBookedByUser"
                     onClick={() =>

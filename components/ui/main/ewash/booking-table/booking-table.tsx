@@ -141,8 +141,8 @@ export function BookingTable(): JSX.Element {
         );
     }
     return (
-        <div className="flex flex-row gap-5 min-w-0">
-            <div className="flex-1 min-w-0 overflow-x-auto">
+        <div className="flex flex-row gap-5 min-w-0 h-full">
+            <div className="flex-1 overflow-x-auto  h-full items-center">
                 <MachineTable
                     activeBookings={activeBookings}
                     machines={machines}

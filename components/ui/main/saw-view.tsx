@@ -22,7 +22,7 @@ export function SAWView({ title, children, navigationData }: SAWViewProps) {
                 <SidebarTrigger variant="ghost" />
                 <h1 className=" text-lg font-semibold">{title}</h1>
             </div>
-            <div className=" my-4">{children}</div>
+            <div className=" my-4 h-full">{children}</div>
         </div>
     );
 }
