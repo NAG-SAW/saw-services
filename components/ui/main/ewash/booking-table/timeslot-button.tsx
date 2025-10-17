@@ -1,4 +1,5 @@
 import { PlusIcon } from "lucide-react";
+import { AnimatePresence, motion } from "motion/react";
 import { SlTag } from "react-icons/sl";
 import { Button } from "../../../button";
 import { sameDay } from "../../../utils/dateutils";
@@ -45,39 +46,58 @@ export function TimeSlotButton({
         );
     }
 
-    return !booked ? (
-        <Button
-            variant="slotAvailable"
-            onClick={() =>
-                setCurrentBookings([
-                    ...currentBookings,
-                    {
-                        userId: currentUserId,
-                        date: currentDate,
-                        timeSlot: slotIndex,
-                        machineId: machine.id,
-                    },
-                ])
-            }
-        >
-            <PlusIcon />
-        </Button>
-    ) : (
-        <Button
-            variant="slotBookedByUser"
-            onClick={() =>
-                setCurrentBookings([
-                    ...currentBookings.filter(
-                        (b) =>
-                            b.machineId !== machine.id ||
-                            b.timeSlot !== slotIndex ||
-                            !sameDay(b.date, currentDate)
-                    ),
-                ])
-            }
-        >
-            <SlTag />
-        </Button>
+    const animationProps: React.ComponentProps<typeof motion.div> = {
+        initial: { y: -10, opacity: 0 },
+        animate: { y: 0, opacity: 1 },
+        exit: { y: 10, opacity: 0 },
+        transition: { duration: 0.1 },
+    };
+
+    return (
+        <AnimatePresence mode="wait">
+            {!booked ? (
+                <Button
+                    className="cursor-pointer"
+                    key="available"
+                    variant="slotAvailable"
+                    onClick={() =>
+                        setCurrentBookings([
+                            ...currentBookings,
+                            {
+                                userId: currentUserId,
+                                date: currentDate,
+                                timeSlot: slotIndex,
+                                machineId: machine.id,
+                            },
+                        ])
+                    }
+                >
+                    <motion.div {...animationProps}>
+                        <PlusIcon />
+                    </motion.div>
+                </Button>
+            ) : (
+                <Button
+                    className="cursor-pointer"
+                    key="booked"
+                    variant="slotBookedByUser"
+                    onClick={() =>
+                        setCurrentBookings([
+                            ...currentBookings.filter(
+                                (b) =>
+                                    b.machineId !== machine.id ||
+                                    b.timeSlot !== slotIndex ||
+                                    !sameDay(b.date, currentDate)
+                            ),
+                        ])
+                    }
+                >
+                    <motion.div {...animationProps}>
+                        <SlTag />
+                    </motion.div>
+                </Button>
+            )}
+        </AnimatePresence>
     );
 }
 

@@ -3,9 +3,9 @@
 import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
 import { Dispatch } from "react";
-import { Button } from "../../../button";
-import { Calendar } from "../../../calendar";
-import { Popover, PopoverContent, PopoverTrigger } from "../../../popover";
+import { Button } from "../../../../button";
+import { Calendar } from "../../../../calendar";
+import { Popover, PopoverContent, PopoverTrigger } from "../../../../popover";
 
 type DatePickerProps = {
     currentDate: Date;
@@ -25,7 +25,9 @@ export function DatePicker({ currentDate, setSelectedDate }: DatePickerProps) {
                     {currentDate ? (
                         format(currentDate, "PPP")
                     ) : (
-                        <span>Pick a date</span>
+                        <div className="flex gap-1">
+                            <span>Pick a date</span>
+                        </div>
                     )}
                 </Button>
             </PopoverTrigger>
@@ -35,6 +37,14 @@ export function DatePicker({ currentDate, setSelectedDate }: DatePickerProps) {
                     selected={currentDate}
                     onSelect={setSelectedDate}
                 />
+                <div className="flex justify-end pb-3 pr-3">
+                    <Button
+                        variant="secondary"
+                        onClick={() => setSelectedDate(new Date())}
+                    >
+                        Today
+                    </Button>
+                </div>
             </PopoverContent>
         </Popover>
     );

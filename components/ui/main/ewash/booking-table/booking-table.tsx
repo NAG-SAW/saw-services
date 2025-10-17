@@ -14,10 +14,10 @@ import {
     TableHeader,
     TableRow,
 } from "../../../table";
-import { DatePicker } from "../date-picker/date-picker";
-import { MobileWrapperPurchaseSummary } from "../purchase-summary/mobile-wrapper-ps";
-import { PurchaseSummary } from "../purchase-summary/purchase-summary";
 import { CurrentTimeIndicator } from "./current-time-indicator";
+import { DatePicker } from "./date-picker/date-picker";
+import { MobilePurchaseSummary } from "./purchase-summary/mobile-purchase-summary";
+import { PurchaseSummary } from "./purchase-summary/purchase-summary";
 import { TimeSlotButton } from "./timeslot-button";
 
 export type Reservation = {
@@ -130,13 +130,13 @@ export function BookingTable(): JSX.Element {
                     currentBookings={currentBookings}
                     setCurrentBookings={setCurrentBookings}
                 />
-                <MobileWrapperPurchaseSummary>
-                    <PurchaseSummary
-                        currentBookings={currentBookings}
-                        setCurrentBookings={setCurrentBookings}
-                        updateBookings={() => {}}
-                    />
-                </MobileWrapperPurchaseSummary>
+                <MobilePurchaseSummary
+                    currentBookings={currentBookings}
+                    setCurrentBookings={setCurrentBookings}
+                    updateBookings={function (bookings: Reservation[]): void {
+                        throw new Error("Function not implemented.");
+                    }}
+                />
             </div>
         );
     }
@@ -168,7 +168,7 @@ export function BookingTable(): JSX.Element {
 }
 
 type MachineTableProps = {
-    currentDate: Date;
+    currentDate: Date | undefined;
     currentUserId: string;
     activeBookings: Reservation[];
     currentBookings: Reservation[];
@@ -191,7 +191,7 @@ function MachineTable({
             <Table>
                 <TableCaption>Machine Booking Slots</TableCaption>
                 <TableHeader>
-                    {!abbreviated && (
+                    {!abbreviated ? (
                         <TableRow>
                             <TableHead className="w-[5%]" />
                             <TableHead colSpan={machines.length}>
@@ -209,7 +209,7 @@ function MachineTable({
                                 </div>
                             </TableHead>
                         </TableRow>
-                    )}
+                    ) : null}
                     <TableRow className="bg-muted/50">
                         <TableHead>
                             <h4
@@ -244,35 +244,39 @@ function MachineTable({
                     </TableRow>
                 </TableHeader>
                 <TableBody>
-                    {TIME_SLOT_INTERVAL.map((slot, index) => (
-                        <TableRow key={slot}>
-                            <TableCell
-                                className={
-                                    abbreviated
-                                        ? "border-b whitespace-normal"
-                                        : "border-b"
-                                }
-                            >
-                                {slot}
-                            </TableCell>
-                            {machines.map((machine) => (
-                                <TableCell
-                                    className="border-b p-[2px]"
-                                    key={machine.name}
-                                >
-                                    <TimeSlotButton
-                                        activeBookings={activeBookings}
-                                        machine={machine}
-                                        slotIndex={index}
-                                        currentDate={currentDate}
-                                        currentUserId={currentUserId}
-                                        currentBookings={currentBookings}
-                                        setCurrentBookings={setCurrentBookings}
-                                    />
-                                </TableCell>
-                            ))}
-                        </TableRow>
-                    ))}
+                    {currentDate
+                        ? TIME_SLOT_INTERVAL.map((slot, index) => (
+                              <TableRow key={slot}>
+                                  <TableCell
+                                      className={
+                                          abbreviated
+                                              ? "border-b whitespace-normal"
+                                              : "border-b"
+                                      }
+                                  >
+                                      {slot}
+                                  </TableCell>
+                                  {machines.map((machine) => (
+                                      <TableCell
+                                          className="border-b p-[2px]"
+                                          key={machine.name}
+                                      >
+                                          <TimeSlotButton
+                                              activeBookings={activeBookings}
+                                              machine={machine}
+                                              slotIndex={index}
+                                              currentDate={currentDate}
+                                              currentUserId={currentUserId}
+                                              currentBookings={currentBookings}
+                                              setCurrentBookings={
+                                                  setCurrentBookings
+                                              }
+                                          />
+                                      </TableCell>
+                                  ))}
+                              </TableRow>
+                          ))
+                        : null}
                 </TableBody>
                 <TableFooter>
                     <TableRow>

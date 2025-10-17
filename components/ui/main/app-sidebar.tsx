@@ -1,4 +1,6 @@
+"use client";
 import { WashingMachine } from "lucide-react";
+import { usePathname } from "next/navigation";
 import * as React from "react";
 
 import {
@@ -15,43 +17,72 @@ import {
     SidebarRail,
 } from "@/components/ui/sidebar";
 
-// This is sample data.
-const data = {
-    navMain: [
-        {
-            title: "EWash",
-            url: "/ewash",
-
-            items: [
-                {
-                    title: "Booking",
-                    url: "/ewash",
-                    isActive: true,
-                },
-                {
-                    title: "Maintenance",
-                    url: "/ewash/maintenance",
-                },
-                {
-                    title: "Seller",
-                    url: "/ewash/seller",
-                },
-            ],
-        },
-        {
-            title: "Settings",
-            url: "/settings",
-            items: [
-                {
-                    title: "Profile",
-                    url: "/settings/profile",
-                },
-            ],
-        },
-    ],
+// Types
+export type NavItem = {
+    title: string;
+    url: string;
+    items?: NavItem[];
 };
 
-export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+// Recursive component for menu items
+function MenuItem({ item, pathname }: { item: NavItem; pathname: string }) {
+    return (
+        <SidebarMenuItem key={item.title}>
+            <SidebarMenuButton asChild isActive={pathname === item.url}>
+                <a href={item.url} className="font-medium">
+                    {item.title}
+                </a>
+            </SidebarMenuButton>
+            {item.items?.length ? (
+                <SidebarMenuSub>
+                    {item.items.map((subItem: NavItem) => (
+                        <SidebarMenuSubItem key={subItem.title}>
+                            <SidebarMenuSubButton
+                                asChild
+                                isActive={pathname === subItem.url}
+                            >
+                                <a href={subItem.url}>{subItem.title}</a>
+                            </SidebarMenuSubButton>
+                            {subItem.items?.length ? (
+                                <SidebarMenuSub>
+                                    {subItem.items.map(
+                                        (nestedItem: NavItem) => (
+                                            <SidebarMenuSubItem
+                                                key={nestedItem.title}
+                                            >
+                                                <SidebarMenuSubButton
+                                                    asChild
+                                                    isActive={
+                                                        pathname ===
+                                                        nestedItem.url
+                                                    }
+                                                >
+                                                    <a href={nestedItem.url}>
+                                                        {nestedItem.title}
+                                                    </a>
+                                                </SidebarMenuSubButton>
+                                            </SidebarMenuSubItem>
+                                        )
+                                    )}
+                                </SidebarMenuSub>
+                            ) : null}
+                        </SidebarMenuSubItem>
+                    ))}
+                </SidebarMenuSub>
+            ) : null}
+        </SidebarMenuItem>
+    );
+}
+
+export function AppSidebar({
+    data,
+    ...props
+}: {
+    data: { navMain: NavItem[] };
+    props?: React.ComponentProps<typeof Sidebar>;
+}) {
+    const pathname = usePathname();
+
     return (
         <Sidebar {...props}>
             <SidebarHeader>
@@ -77,31 +108,11 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                 <SidebarGroup>
                     <SidebarMenu>
                         {data.navMain.map((item) => (
-                            <SidebarMenuItem key={item.title}>
-                                <SidebarMenuButton asChild>
-                                    <a href={item.url} className="font-medium">
-                                        {item.title}
-                                    </a>
-                                </SidebarMenuButton>
-                                {item.items?.length ? (
-                                    <SidebarMenuSub>
-                                        {item.items.map((item) => (
-                                            <SidebarMenuSubItem
-                                                key={item.title}
-                                            >
-                                                <SidebarMenuSubButton
-                                                    asChild
-                                                    isActive={item.isActive}
-                                                >
-                                                    <a href={item.url}>
-                                                        {item.title}
-                                                    </a>
-                                                </SidebarMenuSubButton>
-                                            </SidebarMenuSubItem>
-                                        ))}
-                                    </SidebarMenuSub>
-                                ) : null}
-                            </SidebarMenuItem>
+                            <MenuItem
+                                key={item.title}
+                                item={item}
+                                pathname={pathname}
+                            />
                         ))}
                     </SidebarMenu>
                 </SidebarGroup>

@@ -22,9 +22,9 @@ const buttonVariants = cva(
                 slotBooked:
                     "bg-red-400 text-accent-foreground shadow-xs w-full rounded-xs p-0",
                 slotBookedByUser:
-                    "bg-green-400 text-accent-foreground shadow-xs w-full rounded-xs p-0",
+                    "bg-[#5EE9B5]  text-accent-foreground shadow-xs w-full rounded-xs p-0",
                 slotAvailable:
-                    "bg-gray-200 text-muted-foreground shadow-xs w-full rounded-xs p-0  hover:bg-green-300",
+                    "bg-secondary rounded-xs text-muted-foreground shadow-xs w-full p-0  hover:bg-green-300",
                 confirm:
                     "bg-[#5EE9B5] text-black shadow-xs w-full rounded-xs p-0 hover:bg-green-600",
             },

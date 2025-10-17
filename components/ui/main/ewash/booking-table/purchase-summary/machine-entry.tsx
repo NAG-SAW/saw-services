@@ -1,13 +1,9 @@
 import { Trash, WashingMachineIcon } from "lucide-react";
 import React from "react";
 import { MdLocalLaundryService } from "react-icons/md";
-import { Button } from "../../../button";
-import { sameDay } from "../../../utils/dateutils";
-import {
-    machines,
-    Reservation,
-    TIME_SLOT_INTERVAL,
-} from "../booking-table/booking-table";
+import { Button } from "../../../../button";
+import { sameDay } from "../../../../utils/dateutils";
+import { machines, Reservation, TIME_SLOT_INTERVAL } from "../booking-table";
 
 type MachineEntryProps = {
     booking: Reservation;
