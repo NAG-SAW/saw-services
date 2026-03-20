@@ -22,11 +22,11 @@ const buttonVariants = cva(
                 slotBooked:
                     "bg-red-400 text-accent-foreground shadow-xs w-full rounded-xs p-0",
                 slotBookedByUser:
-                    "bg-[#5EE9B5]  text-accent-foreground shadow-xs w-full rounded-xs p-0",
+                    "bg-[var(--saw-accent)]  text-accent-foreground shadow-xs w-full rounded-xs p-0",
                 slotAvailable:
-                    "bg-secondary rounded-xs text-muted-foreground shadow-xs w-full p-0  hover:bg-green-300",
+                    "bg-secondary rounded-xs text-muted-foreground shadow-xs w-full p-0  hover:bg-blue-300",
                 confirm:
-                    "bg-[#5EE9B5] text-black shadow-xs w-full rounded-xs p-0 hover:bg-green-600",
+                    "bg-[var(--saw-accent)] text-black shadow-xs w-full rounded-xs p-0 hover:bg-blue-600",
             },
             size: {
                 default: "h-9 px-4 py-2 has-[>svg]:px-3",
@@ -39,7 +39,7 @@ const buttonVariants = cva(
             variant: "default",
             size: "default",
         },
-    }
+    },
 );
 
 function Button({

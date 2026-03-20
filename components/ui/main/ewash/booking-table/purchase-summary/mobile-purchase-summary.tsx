@@ -3,7 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { ShoppingBasket } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useState } from "react";
-import { Reservation } from "../booking-table";
+import { Reservation } from "../ewash-booking-table";
 import { PurchaseSummary } from "./purchase-summary";
 
 export function MobilePurchaseSummary({

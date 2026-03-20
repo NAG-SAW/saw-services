@@ -28,12 +28,12 @@ export type SimpleTableProps = {
     caption?: string;
     columns: {
         header: string;
-        accessor: string; // Now supports dot notation like "user.profile.name"
+        accessor: string;
         cell?: (row: Record<string, string>) => React.ReactNode;
         width?: string | number;
         align?: "left" | "center" | "right";
     }[];
-    data: Record<string, string>[]; // Now supports nested objects
+    data: Record<string, string>[];
 };
 
 export function SimpleTable({ columns, data, caption }: SimpleTableProps) {

@@ -3,7 +3,11 @@ import React from "react";
 import { MdLocalLaundryService } from "react-icons/md";
 import { Button } from "../../../../button";
 import { sameDay } from "../../../../utils/dateutils";
-import { machines, Reservation, TIME_SLOT_INTERVAL } from "../booking-table";
+import {
+    machines,
+    Reservation,
+    TIME_SLOT_INTERVAL,
+} from "../ewash-booking-table";
 
 type MachineEntryProps = {
     booking: Reservation;
@@ -19,9 +23,9 @@ export function MachineEntry({
     return (
         <div className="flex flex-row items-center gap-2 border-b py-2 last:border-0">
             {machine?.type === "washer" ? (
-                <MdLocalLaundryService size={25} color="#5EE9B5" />
+                <MdLocalLaundryService size={25} color="var(--saw-accent)" />
             ) : (
-                <WashingMachineIcon size={23} color="#5EE9B5" />
+                <WashingMachineIcon size={23} color="var(--saw-accent)" />
             )}
             <div className="flex flex-col">
                 <span className="font-semibold">
@@ -42,8 +46,8 @@ export function MachineEntry({
                                     b.machineId === booking.machineId &&
                                     b.timeSlot === booking.timeSlot &&
                                     sameDay(b.date, booking.date)
-                                )
-                        )
+                                ),
+                        ),
                     );
                 }}
             >

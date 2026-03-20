@@ -1,13 +1,14 @@
+import { Booking } from "@/components/ui/tables/booking-table";
 import { PlusIcon } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { SlTag } from "react-icons/sl";
 import { Button } from "../../../button";
 import { sameDay } from "../../../utils/dateutils";
-import { Machine, Reservation } from "./booking-table";
+import { Reservation } from "./ewash-booking-table";
 
 type TimeSlotButtonProps = {
     slotIndex: number;
-    machine: Machine;
+    machine: Booking;
     currentDate: Date;
     currentUserId: string;
     activeBookings: Reservation[];

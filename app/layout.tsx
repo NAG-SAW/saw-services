@@ -29,6 +29,12 @@ export default function RootLayout({
     const data = {
         navMain: [
             {
+                title: "Manager",
+                url: "/manager",
+
+                items: [],
+            },
+            {
                 title: "EWash",
                 url: "/ewash",
 
@@ -70,6 +76,16 @@ export default function RootLayout({
                                 url: "/ewash/saw-coin/admin",
                             },
                         ],
+                    },
+                ],
+            },
+            {
+                title: "Sports Room",
+                url: "/sports-room",
+                items: [
+                    {
+                        title: "Booking",
+                        url: "/sports-room",
                     },
                 ],
             },

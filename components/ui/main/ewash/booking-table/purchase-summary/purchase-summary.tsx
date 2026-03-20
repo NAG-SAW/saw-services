@@ -3,7 +3,7 @@ import { SetStateAction, useState } from "react";
 import { BiCollapseAlt, BiExpandAlt } from "react-icons/bi";
 import { Button } from "../../../../button";
 import { Card, CardContent, CardFooter, CardTitle } from "../../../../card";
-import { Reservation } from "../booking-table";
+import { Reservation } from "../ewash-booking-table";
 import { MachineEntry } from "./machine-entry";
 
 type PurchaseSummaryProps = {

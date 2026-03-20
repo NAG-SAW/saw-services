@@ -62,7 +62,7 @@ function MenuItem({ item, pathname }: { item: NavItem; pathname: string }) {
                                                     </a>
                                                 </SidebarMenuSubButton>
                                             </SidebarMenuSubItem>
-                                        )
+                                        ),
                                     )}
                                 </SidebarMenuSub>
                             ) : null}
@@ -91,7 +91,7 @@ export function AppSidebar({
                         <SidebarMenuButton size="lg" asChild>
                             <a href="#">
                                 <div className="flex aspect-square size-8 items-center justify-center rounded-lg">
-                                    <WashingMachine className="size-4 text-[#5EE9B5]" />
+                                    <WashingMachine className="size-4 text-[var(--saw-accent)]" />
                                 </div>
                                 <div className="flex flex-col gap-0.5 leading-none">
                                     <span className="font-semibold">

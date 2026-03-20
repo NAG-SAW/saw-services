@@ -1,5 +1,5 @@
 import { Card, CardDescription } from "@/components/ui/card";
-import { SimpleTable } from "../tables/simple-table";
+import { SimpleTable } from "../../../tables/simple-table";
 
 export function SAWCoinOverview() {
     const balanceHolders: Array<{ id: string; name: string; amount: string }> =

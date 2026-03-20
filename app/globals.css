@@ -44,6 +44,7 @@
 }
 
 :root {
+  --saw-accent: oklch(71.957% 0.15646 243.592);
   --radius: 0.625rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);

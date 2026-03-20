@@ -1,4 +1,4 @@
-import { Reservation } from "./ewash/booking-table/booking-table";
+import { Reservation } from "./ewash/booking-table/ewash-booking-table";
 
 export async function fetchActiveBookings(date: Date): Promise<Reservation[]> {
     //TODO: replace placeholder for fetching bookings from an API
