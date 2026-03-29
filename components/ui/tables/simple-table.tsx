@@ -19,7 +19,7 @@ function getNestedValue(obj: Record<string, unknown>, path: string): string {
     return typeof value === "string" ? value : String(value || "");
 }
 
-export type SimpleTableProps = {
+export type SimpleTableProps<T> = {
     allowSearch?: boolean;
     sortable?: boolean;
     pagination?: boolean;
@@ -29,14 +29,19 @@ export type SimpleTableProps = {
     columns: {
         header: string;
         accessor: string;
-        cell?: (row: Record<string, string>) => React.ReactNode;
+        cell?: (row: T) => React.ReactNode;
         width?: string | number;
         align?: "left" | "center" | "right";
     }[];
-    data: Record<string, string>[];
+    data: T[];
 };
 
-export function SimpleTable({ columns, data, caption }: SimpleTableProps) {
+/** Simple table without any styling */
+export function SimpleTable<T extends Record<string, unknown>>({
+    columns,
+    data,
+    caption,
+}: SimpleTableProps<T>) {
     return (
         <Table>
             <TableCaption>{caption}</TableCaption>
