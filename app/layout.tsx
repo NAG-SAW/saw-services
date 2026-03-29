@@ -31,8 +31,12 @@ export default function RootLayout({
             {
                 title: "Manager",
                 url: "/manager",
-
-                items: [],
+                items: [
+                    {
+                        title: "Users",
+                        url: "/manager",
+                    },
+                ],
             },
             {
                 title: "EWash",

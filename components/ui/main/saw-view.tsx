@@ -10,6 +10,7 @@ export type SAWViewProps = {
 };
 export function SAWView({ title, children, navigationData }: SAWViewProps) {
     const pathName = usePathname();
+
     if (!title) {
         title = navigationData?.navMain
             .flatMap((item) => item.items || [])
