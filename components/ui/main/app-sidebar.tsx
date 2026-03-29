@@ -97,7 +97,7 @@ export function AppSidebar({
                                     <span className="font-semibold">
                                         SAW Services
                                     </span>
-                                    <span className="">v0.0.1</span>
+                                    <span className="">v0.1.0</span>
                                 </div>
                             </a>
                         </SidebarMenuButton>
