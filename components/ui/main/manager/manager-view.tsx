@@ -8,5 +8,6 @@ type ManagerViewProps = {
 };
 
 export default function ManagerView({ users }: ManagerViewProps) {
+    
     return <UserTable users={users} />;
 }

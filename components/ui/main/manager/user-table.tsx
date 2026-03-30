@@ -53,6 +53,7 @@ export default function UserTable({ users }: UserTableProps) {
         {
             accessorKey: "is_active",
             header: "Active",
+            enableSorting: false,
             cell: ({ row }: { row: Row<User> }) => {
                 if (row.original.is_active) {
                     return <BadgeCheck color="lightgreen" />;

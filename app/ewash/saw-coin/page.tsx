@@ -1,4 +1,4 @@
-import { SAWCoinOverview } from "@/components/ui/main/ewash/sawCoin/overview";
+import { SAWCoinOverview } from "@/components/ui/main/ewash/saw-coin/overview";
 
 export default function page() {
     return <SAWCoinOverview />;

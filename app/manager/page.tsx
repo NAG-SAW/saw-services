@@ -9,7 +9,6 @@ export default async function Page() {
         headers: { cookie: headersList.get("cookie") || "" },
         cache: "no-store",
     });
-
     if (res.status === 401) redirect("/api/auth/login?current_url=/manager");
 
     const users: User[] = await res.json();
