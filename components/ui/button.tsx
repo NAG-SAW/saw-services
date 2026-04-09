@@ -26,7 +26,7 @@ const buttonVariants = cva(
                 slotAvailable:
                     "bg-secondary rounded-xs text-muted-foreground shadow-xs w-full p-0  hover:bg-blue-300",
                 confirm:
-                    "bg-[var(--saw-accent)] text-black shadow-xs hover:bg-blue-600",
+                    "bg-[var(--saw-accent)] text-white shadow-xs hover:bg-blue-600",
             },
             size: {
                 default: "h-9 px-4 py-2 has-[>svg]:px-3",

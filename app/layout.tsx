@@ -84,6 +84,20 @@ export default function RootLayout({
                 ],
             },
             {
+                title: "Printer",
+                url: "/printer",
+                items: [
+                    {
+                        title: "Print",
+                        url: "/printer",
+                    },
+                    {
+                        title: "PDF-Converter",
+                        url: "/printer/pdfconverter",
+                    },
+                ],
+            },
+            {
                 title: "Settings",
                 url: "/settings",
                 items: [
