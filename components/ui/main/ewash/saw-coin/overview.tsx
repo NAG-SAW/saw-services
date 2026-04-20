@@ -1,5 +1,4 @@
 import { Card, CardDescription } from "@/components/ui/card";
-import { SimpleTable } from "../../../tables/simple-table";
 
 export function SAWCoinOverview() {
     const balanceHolders: Array<{ id: string; name: string; amount: string }> =
@@ -244,10 +243,10 @@ export function SAWCoinOverview() {
                     Current EWash balance holders
                 </div>
                 <CardDescription className="flex flex-col overflow-y-auto border-t border-b">
-                    <SimpleTable
+                    {/* <SimpleTable
                         columns={balanceHolderCols}
                         data={balanceHolders}
-                    />
+                    /> */}
                 </CardDescription>
                 <div className="text-sm text-center text-muted-foreground">
                     Current EWash balance holders
@@ -258,10 +257,10 @@ export function SAWCoinOverview() {
                     Last Transactions
                 </div>
                 <CardDescription className="flex flex-col overflow-y-auto border-t border-b">
-                    <SimpleTable
+                    {/* <SimpleTable
                         columns={transactionCols}
                         data={transactions}
-                    />
+                    /> */}
                 </CardDescription>
                 <div className="text-sm text-center text-muted-foreground">
                     Last Transactions

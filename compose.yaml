@@ -1,0 +1,11 @@
+services:
+  web:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - API_URL=http://api:8000 
+    depends_on:
+      - api
+  api:
+    image: pdf-convert  

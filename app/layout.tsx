@@ -18,95 +18,95 @@ export default function RootLayout({
 }>) {
     const data = {
         navMain: [
-            {
-                title: "Manager",
-                url: "/manager",
-                items: [
-                    {
-                        title: "Users",
-                        url: "/manager",
-                    },
-                ],
-            },
-            {
-                title: "EWash",
-                url: "/ewash",
+            // {
+            //     title: "Manager",
+            //     url: "/manager",
+            //     items: [
+            //         {
+            //             title: "Users",
+            //             url: "/manager",
+            //         },
+            //     ],
+            // },
+            // {
+            //     title: "EWash",
+            //     url: "/ewash",
 
-                items: [
-                    {
-                        title: "Booking",
-                        url: "/ewash",
-                    },
-                    {
-                        title: "Maintenance",
-                        url: "/ewash/maintenance",
-                    },
-                    {
-                        title: "Sellers",
-                        url: "/ewash/sellers",
-                    },
-                    {
-                        title: "SAW-Coin",
-                        url: "/ewash/saw-coin",
-                        items: [
-                            {
-                                title: "Overview",
-                                url: "/ewash/saw-coin",
-                            },
-                            {
-                                title: "Account",
-                                url: "/ewash/saw-coin/account",
-                            },
-                            {
-                                title: "Seller",
-                                url: "/ewash/saw-coin/seller",
-                            },
-                            {
-                                title: "Finances",
-                                url: "/ewash/saw-coin/finances",
-                            },
-                            {
-                                title: "Admin",
-                                url: "/ewash/saw-coin/admin",
-                            },
-                        ],
-                    },
-                ],
-            },
-            {
-                title: "Sports Room",
-                url: "/sports-room",
-                items: [
-                    {
-                        title: "Booking",
-                        url: "/sports-room",
-                    },
-                ],
-            },
+            //     items: [
+            //         {
+            //             title: "Booking",
+            //             url: "/ewash",
+            //         },
+            //         {
+            //             title: "Maintenance",
+            //             url: "/ewash/maintenance",
+            //         },
+            //         {
+            //             title: "Sellers",
+            //             url: "/ewash/sellers",
+            //         },
+            //         {
+            //             title: "SAW-Coin",
+            //             url: "/ewash/saw-coin",
+            //             items: [
+            //                 {
+            //                     title: "Overview",
+            //                     url: "/ewash/saw-coin",
+            //                 },
+            //                 {
+            //                     title: "Account",
+            //                     url: "/ewash/saw-coin/account",
+            //                 },
+            //                 {
+            //                     title: "Seller",
+            //                     url: "/ewash/saw-coin/seller",
+            //                 },
+            //                 {
+            //                     title: "Finances",
+            //                     url: "/ewash/saw-coin/finances",
+            //                 },
+            //                 {
+            //                     title: "Admin",
+            //                     url: "/ewash/saw-coin/admin",
+            //                 },
+            //             ],
+            //         },
+            //     ],
+            // },
+            // {
+            //     title: "Sports Room",
+            //     url: "/sports-room",
+            //     items: [
+            //         {
+            //             title: "Booking",
+            //             url: "/sports-room",
+            //         },
+            //     ],
+            // },
             {
                 title: "Printer",
-                url: "/printer",
+                url: "/printer/pdfconverter",
                 items: [
-                    {
-                        title: "Print",
-                        url: "/printer",
-                    },
+                    // {
+                    //     title: "Print",
+                    //     url: "/printer",
+                    // },
                     {
                         title: "PDF-Converter",
                         url: "/printer/pdfconverter",
                     },
                 ],
             },
-            {
-                title: "Settings",
-                url: "/settings",
-                items: [
-                    {
-                        title: "Profile",
-                        url: "/settings/profile",
-                    },
-                ],
-            },
+            // {
+            //     title: "Settings",
+            //     url: "/settings",
+            //     items: [
+            //         {
+            //             title: "Profile",
+            //             url: "/settings/profile",
+            //         },
+            //     ],
+            // },
         ],
     };
 
