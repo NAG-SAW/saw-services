@@ -52,6 +52,13 @@ function Dropzone({ setFiles }: DropzoneProp) {
     const addFiles = useCallback(
         (list: FileList | null) => {
             if (!list) return;
+
+            const pdfs = Array.from(list).filter((file) =>
+                file.name.toLowerCase().endsWith(".pdf"),
+            );
+
+            if (pdfs.length === 0) return;
+
             Array.from(list).forEach((file: File) => {
                 const id = crypto.randomUUID();
                 setFiles((f) => [...f, { id, file }]);
@@ -87,7 +94,7 @@ function Dropzone({ setFiles }: DropzoneProp) {
             <input
                 ref={inputRef}
                 type="file"
-                accept=".pdf .png"
+                accept=".pdf"
                 multiple
                 className="hidden"
                 onChange={(e) => addFiles(e.target.files)}
