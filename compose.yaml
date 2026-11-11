@@ -5,6 +5,8 @@ services:
       - "3000:3000"
     environment:
       - API_URL=http://api:8000 
+      # Set to show the "Internal Speedtest" link in the sidebar:
+      # - SPEEDTEST_URL=https://speedtest.internal.example
     depends_on:
       - api
   api:

@@ -6,6 +6,11 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Providers } from "./providers";
 
+// Renders the layout on every request instead of prerendering it at build
+// time, so SPEEDTEST_URL (e.g. set via compose.yaml) can toggle the
+// "Internal Speedtest" sidebar link without rebuilding the image.
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
     title: "SAW Services",
     description: "Boop",
@@ -16,6 +21,8 @@ export default function RootLayout({
 }: Readonly<{
     children: React.ReactNode;
 }>) {
+    const speedtestUrl = process.env.SPEEDTEST_URL;
+
     const data = {
         navMain: [
             // {
@@ -107,6 +114,17 @@ export default function RootLayout({
             //         },
             //     ],
             // },
+            // Only shown when an external speedtest link is configured
+            // (SPEEDTEST_URL, e.g. via compose.yaml).
+            ...(speedtestUrl
+                ? [
+                      {
+                          title: "Internal Speedtest",
+                          url: speedtestUrl,
+                          external: true,
+                      },
+                  ]
+                : []),
         ],
     };
 

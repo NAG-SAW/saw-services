@@ -21,6 +21,8 @@ import {
 export type NavItem = {
     title: string;
     url: string;
+    /** Opens in a new tab (for links pointing outside of this app). */
+    external?: boolean;
     items?: NavItem[];
 };
 
@@ -29,7 +31,12 @@ function MenuItem({ item, pathname }: { item: NavItem; pathname: string }) {
     return (
         <SidebarMenuItem key={item.title}>
             <SidebarMenuButton asChild isActive={pathname === item.url}>
-                <a href={item.url} className="font-medium">
+                <a
+                    href={item.url}
+                    className="font-medium"
+                    target={item.external ? "_blank" : undefined}
+                    rel={item.external ? "noopener noreferrer" : undefined}
+                >
                     {item.title}
                 </a>
             </SidebarMenuButton>
